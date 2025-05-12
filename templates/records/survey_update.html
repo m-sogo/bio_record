@@ -1,0 +1,16 @@
+<!-- survey_update.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Survey</title>
+</head>
+<body>
+    <h1>調査日情報を更新</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">更新</button>
+    </form>
+    <a href="{% url 'records:survey_detail' survey.pk %}">調査日情報に戻る</a>
+</body>
+</html>

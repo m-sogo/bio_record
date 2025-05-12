@@ -1,0 +1,16 @@
+<!-- location_create.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Location</title>
+</head>
+<body>
+    <h1>地点登録</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">登録</button>
+    </form>
+    <a href="{% url 'records:location_list' %}">地点リスト</a>
+</body>
+</html>

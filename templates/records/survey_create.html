@@ -1,0 +1,16 @@
+<!-- survey_create.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Survey</title>
+</head>
+<body>
+    <h1>調査日登録</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">登録</button>
+    </form>
+    <a href="{% url 'records:survey_list' %}">調査日リスト</a>
+</body>
+</html>

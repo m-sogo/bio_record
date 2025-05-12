@@ -1,0 +1,16 @@
+<!-- record_create.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Record</title>
+</head>
+<body>
+    <h1>採捕情報入力</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">登録</button>
+    </form>
+    <a href="{% url 'records:survey_list' %}">調査日ごと採捕情報リスト</a>
+</body>
+</html>

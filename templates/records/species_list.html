@@ -1,0 +1,17 @@
+<!-- species_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Species List</title>
+</head>
+<body>
+    <h1>生物種リスト</h1><a href="{% url 'records:species_create' %}">新たに種を追加する</a>
+    <ul>
+        {% for species in species %}
+            <li>
+                <a href="{% url 'records:species_detail' species.pk %}">{{ species.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

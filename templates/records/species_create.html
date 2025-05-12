@@ -1,0 +1,16 @@
+<!-- species_create.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Species</title>
+</head>
+<body>
+    <h1>種登録</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">登録</button>
+    </form>
+    <a href="{% url 'records:species_list' %}">生物種リスト</a>
+</body>
+</html>

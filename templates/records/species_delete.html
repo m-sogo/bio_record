@@ -1,0 +1,16 @@
+<!-- species_delete.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Species</title>
+</head>
+<body>
+    <h1>この種を本当に削除しますか？</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>削除すると、関連する採捕記録も削除されるため推奨しません</p>
+        <button type="submit">はい、削除します</button>
+        <a href="{% url 'records:species_detail' object.pk %}">いいえ、詳細に戻ります</a>
+    </form>
+</body>
+</html>

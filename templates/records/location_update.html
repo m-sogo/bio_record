@@ -1,0 +1,16 @@
+<!-- location_update.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Location</title>
+</head>
+<body>
+    <h1>地点情報を更新する</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">更新</button>
+    </form>
+    <a href="{% url 'records:location_detail' location.pk %}">地点情報詳細に戻る</a>
+</body>
+</html>

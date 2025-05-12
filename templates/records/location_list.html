@@ -1,0 +1,18 @@
+<!-- location_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Location List</title>
+</head>
+<body>
+    <h1>調査地点リスト</h1>
+    <a href="{% url 'records:location_create' %}">新たに地点を追加</a>
+    <ul>
+        {% for location in locations %}
+            <li>
+                <a href="{% url 'records:location_detail' location.pk %}">{{ location.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

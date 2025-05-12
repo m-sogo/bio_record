@@ -1,0 +1,15 @@
+<!-- record_delete.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Record</title>
+</head>
+<body>
+    <h1>この採捕記録を本当に削除しますか？</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">はい、削除します</button>
+        <a href="{% url 'records:location_detail' object.pk %}">いいえ、詳細に戻ります</a>
+    </form>
+</body>
+</html>

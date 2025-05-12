@@ -1,0 +1,16 @@
+<!-- record_update.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Record</title>
+</head>
+<body>
+    <h1>採捕記録を更新</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">更新</button>
+    </form>
+    <a href="{% url 'records:record_detail' record.pk %}">採捕情報詳細へ戻る</a>
+</body>
+</html>

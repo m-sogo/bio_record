@@ -1,0 +1,17 @@
+<!-- species_detail.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Species Detail</title>
+</head>
+<body>
+    <h1>種の詳細</h1>
+    <p>{{ species.name }}</p>
+    <p>{{ species.genus }}</p>
+    <p>{{ species.family }}</p>
+    <p>学名:{{ species.scientific_name }}</p>
+    <a href="{% url 'records:species_update' species.pk %}">種の情報を更新</a>
+    <a href="{% url 'records:species_delete' species.pk %}">種の情報を削除</a>
+    <a href="{% url 'records:species_list' %}">生物種リストに戻る</a>
+</body>
+</html>

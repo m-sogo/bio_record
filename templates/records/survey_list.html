@@ -1,0 +1,20 @@
+<!-- survey_list.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey detail</title>
+</head>
+<body>
+    <h2>調査日リスト</h2>
+    <a href="{% url 'records:survey_create' %}">新たに調査日を追加</a>
+    <ul>
+        {% for survey in surveys %}
+            <li>
+                <a href="{% url 'records:survey_detail' survey.pk %}">{{ survey.date }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
