@@ -6,7 +6,7 @@ from django.utils import timezone
 class SpeciesForm(forms.ModelForm):
     class Meta:
         model = Species
-        fields = ('name','genus','family','scientific_name')
+        fields = ('name','genus','family','scientific_name','note')
 
 class LocationForm(forms.ModelForm):
     class Meta:
