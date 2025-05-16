@@ -1,7 +1,7 @@
 #views.py
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse_lazy, reverse
 from .models import Species, Location, Record, Survey
 from .forms import SpeciesForm, LocationForm, RecordForm, SurveyForm
@@ -48,10 +48,15 @@ class SurveyDeleteView(DeleteView):
     success_url = reverse_lazy('records:survey_list')
 
 # Record views
-class RecordcompleteView(ListView):
-    model = Record
+class RecordcompleteView(TemplateView):
     template_name = 'records/record_complete.html'
-    context_object_name = 'record'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get('pk')
+        record = get_object_or_404(Record, pk=pk)
+        context['record'] = record
+        return context
 
 class RecordDetailView(DetailView):
     model = Record
