@@ -63,6 +63,12 @@ class RecordDetailView(DetailView):
     template_name = 'records/record_detail.html'
     context_object_name = 'record'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['location'] = self.object.location
+        context['survey'] = self.object.survey
+        return context
+
 class RecordCreateView(CreateView):
     model = Record
     form_class = RecordForm
