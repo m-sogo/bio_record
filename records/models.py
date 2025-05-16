@@ -6,6 +6,7 @@ class Species(models.Model):
     genus = models.CharField(max_length=100, blank=True, null=True, verbose_name="属")
     family = models.CharField(max_length=100, blank=True, null=True, verbose_name="科")
     scientific_name = models.CharField(max_length=200, blank=True, null=True, verbose_name="学名")
+    note = models.TextField(blank=True, null=True, verbose_name="備考")
 
     def __str__(self):
         return self.name
