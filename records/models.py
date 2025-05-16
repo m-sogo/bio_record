@@ -43,11 +43,11 @@ class Record(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE, verbose_name="採取場所")
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE, verbose_name="調査日")
     count = models.IntegerField(default=1, verbose_name="個体数")
-    length = models.FloatField(blank=True, null=True, verbose_name="体長")
-    weight = models.FloatField(blank=True, null=True, verbose_name="湿重量")
-    water_temperature = models.FloatField(blank=True, null=True, verbose_name="水温")
-    flow_rate = models.FloatField(blank=True, null=True, verbose_name="流速")
-    water_depth = models.FloatField(blank=True, null=True, verbose_name="水深")
+    length = models.FloatField(blank=True, null=True, verbose_name="体長(mm)")
+    weight = models.FloatField(blank=True, null=True, verbose_name="湿重量(g)")
+    water_temperature = models.FloatField(blank=True, null=True, verbose_name="水温(℃)")
+    flow_rate = models.FloatField(blank=True, null=True, verbose_name="流速(m/s)")
+    water_depth = models.FloatField(blank=True, null=True, verbose_name="水深(m)")
     note = models.TextField(blank=True, null=True, verbose_name="備考")
 
     def __str__(self):
