@@ -6,6 +6,10 @@ from django.urls import reverse_lazy, reverse
 from .models import Species, Location, Record, Survey
 from .forms import SpeciesForm, LocationForm, RecordForm, SurveyForm
 
+#Home views
+class HomeView(TemplateView):
+    template_name = 'records/home.html'
+
 # Survey views
 class SurveyListView(ListView):
     model = Survey

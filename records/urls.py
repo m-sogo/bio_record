@@ -5,6 +5,7 @@ from . import views
 app_name = 'records'
 
 urlpatterns = [
+    path('home/', views.HomeView.as_view(), name='home'),
     path('survey_list/', views.SurveyListView.as_view(), name='survey_list'),
     path('survey_create/', views.SurveyCreateView.as_view(), name='survey_create'),
     path('survey_detail/<int:pk>/', views.SurveyDetailView.as_view(), name='survey_detail'),
