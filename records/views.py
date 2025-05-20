@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy, reverse
 from .models import Species, Location, Record, Survey
 from .forms import SpeciesForm, LocationForm, RecordForm, SurveyForm
+from django.db.models import Q
 
 #Home views
 class HomeView(TemplateView):
@@ -52,14 +53,37 @@ class SurveyDeleteView(DeleteView):
     success_url = reverse_lazy('records:survey_list')
 
 # Record views
-class RecordcompleteView(TemplateView):
-    template_name = 'records/record_complete.html'
+class RecordListView(ListView):
+    model = Record
+    template_name = 'records/record_list.html'
+    context_object_name = 'records'
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        species_query = self.request.GET.get('species')
+        location_query = self.request.GET.get('location')
+        survey_query = self.request.GET.get('survey')
+
+        if species_query:
+            queryset = queryset.filter(
+                Q(species__name__icontains=species_query) |
+                Q(species__genus__icontains=species_query) |
+                Q(species__family__icontains=species_query) |
+                Q(species__scientific_name__icontain=species_query)
+            )
+        if location_query:
+            queryset = queryset.filter(location__name__icontains=location_query)
+        if survey_query:
+            queryset = queryset.filter(survey__date__year=survey_query)
+        
+        return queryset
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        pk = self.kwargs.get('pk')
-        record = get_object_or_404(Record, pk=pk)
-        context['record'] = record
+        context['species_query'] = self.request.GET.get('species', '')
+        context['location_query'] = self.request.GET.get('location', '')
+        context['survey_query'] = self.request.GET.get('survey', '')
         return context
 
 class RecordDetailView(DetailView):
@@ -82,7 +106,7 @@ class RecordCreateView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('records:record_complete', kwargs={'pk': self.object.pk})
+        return reverse('records:record_list', kwargs={'pk': self.object.pk})
 
 class RecordUpdateView(UpdateView):
     model = Record
@@ -97,7 +121,7 @@ class RecordDeleteView(DeleteView):
     model = Record
     template_name = 'records/record_delete.html'
     context_object_name = 'record'
-    success_url = reverse_lazy('records:record_complete')
+    success_url = reverse_lazy('records:record_list')
 
 # Species views
 class SpeciesListView(ListView):

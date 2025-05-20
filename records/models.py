@@ -52,7 +52,7 @@ class Record(models.Model):
     note = models.TextField(blank=True, null=True, verbose_name="備考")
 
     def __str__(self):
-        return f"{self.species.name} - {self.location.name} - {self.date}"
+        return f"{self.species.name} - {self.location.name} - {self.survey.date}"
 
     class Meta:
         verbose_name = "記録"
