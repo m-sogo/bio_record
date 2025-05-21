@@ -49,7 +49,7 @@ class SurveyUpdateView(UpdateView):
 class SurveyDeleteView(DeleteView):
     model = Survey
     template_name = 'records/survey_delete.html'
-    context_object_name = 'record'
+    context_object_name = 'survey'
     success_url = reverse_lazy('records:survey_list')
 
 # Record views
@@ -63,19 +63,25 @@ class RecordListView(ListView):
         queryset = super().get_queryset()
         species_query = self.request.GET.get('species')
         location_query = self.request.GET.get('location')
-        survey_query = self.request.GET.get('survey')
+        survey_query_y = self.request.GET.get('survey')
+        survey_query_m = self.request.GET.get('survey')
+        survey_query_d = self.request.GET.get('survey')
 
         if species_query:
             queryset = queryset.filter(
                 Q(species__name__icontains=species_query) |
                 Q(species__genus__icontains=species_query) |
                 Q(species__family__icontains=species_query) |
-                Q(species__scientific_name__icontain=species_query)
+                Q(species__scientific_name__icontains=species_query)
             )
         if location_query:
             queryset = queryset.filter(location__name__icontains=location_query)
-        if survey_query:
-            queryset = queryset.filter(survey__date__year=survey_query)
+        if survey_query_y:
+            queryset = queryset.filter(survey__date__year=survey_query_y)
+        if survey_query_m:
+            queryset = queryset.filter(survey__date__month=survey_query_m)
+        if survey_query_d:
+            queryset = queryset.filter(survey__date__date=survey_query_d)
         
         return queryset
     
