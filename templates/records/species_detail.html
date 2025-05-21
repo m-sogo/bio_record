@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Species Detail</title>
+    <title>Detail Species</title>
 </head>
 <body>
     <h2>種名:{{ species.name }}</h2>
@@ -11,8 +11,8 @@
     <p>学名:{{ species.scientific_name }}</p>
     <p>備考: {{ species.note }}</p>
     <a href="{% url 'records:species_update' species.pk %}">種の情報を更新</a>
-    <a href="{% url 'records:species_delete' species.pk %}">種の情報を削除</a>
-    <a href="{% url 'records:species_list' %}">生物種リストに戻る</a>
+    <a href="{% url 'records:species_delete' species.pk %}">種の情報を削除</a><br>
+    <a href="{% url 'records:species_list' %}">生物種リストに戻る</a><br>
     <a href="{% url 'records:home' %}">ホーム画面へ</a>
 </body>
 </html>

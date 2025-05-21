@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Survey detail</title>
+    <title>Detail Survey</title>
 </head>
 <body>
-    <h2>調査日: {{ survey.date }}</h2>
+    <h2>調査日情報: {{ survey.date }}</h2>
     <p>調査メモ: {{ survey.note }}</p>
 
     <h3>採捕記録</h3>
@@ -19,9 +19,9 @@
             </li>
         {% endfor %}
     </ul>
-    <a href="{% url 'records:survey_update' survey.pk %}">調査日情報を更新</a><br>
+    <a href="{% url 'records:survey_update' survey.pk %}">調査日情報を更新</a>
     <a href="{% url 'records:survey_delete' survey.pk %}">調査日情報を削除</a><br>
-    <a href="{% url 'records:survey_list' %}">調査日リストに戻る</a>
+    <a href="{% url 'records:survey_list' %}">調査日リストに戻る</a><br>
     <a href="{% url 'records:home' %}">ホーム画面へ</a>
 </body>
 </html>

@@ -11,7 +11,9 @@
         {{ form.as_p }}
         <button type="submit">登録</button>
     </form>
-    <a href="{% url 'records:survey_list' %}">調査日ごと採捕情報リスト</a>
+    <a href="{% url 'records:species_create' %}">種を登録</a>
+    <a href="{% url 'records:location_create' %}">地点を登録</a>
+    <a href="{% url 'records:survey_create' %}">日付を登録</a><br>
     <a href="{% url 'records:home' %}">ホーム画面へ</a>
 </body>
 </html>
