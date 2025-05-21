@@ -8,6 +8,7 @@ home --> record_create: 調査詳細登録
 home --> species_list: 生物種リストへ
 home --> location_list: 地点リストへ
 home --> survey_list: 日付リストへ
+home --> record_list: 詳細リストへ
 
 species_create --> home
 species_create --> species_list: 完了処理
@@ -19,7 +20,7 @@ survey_create --> home
 survey_create --> survey_list: 完了処理
 
 record_create --> home
-record_create --> record_complete: 完了処理
+record_create --> record_list: 完了処理
 
 species_list --> home
 species_list --> species_create: 新規登録

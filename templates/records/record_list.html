@@ -29,8 +29,10 @@
         <label for="location">場所:</label>
         <input type="text" id="location" name="location" value="{{ location_query }}">
 
-        <label for="survey">調査日(年):</label>
-        <input type="text" id="survey" name="survey" value="{{ survey_query }}">
+        <label>調査日:</label>
+        <input size="3" type="text" id="survey_y" name="survey_y" value="{{ survey_query_y }}">年
+        <input size="1" type="text" id="survey_m" name="survey_m" value="{{ survey_query_m }}">月
+        <input size="1" type="text" id="survey_d" name="survey_d" value="{{ survey_query_d }}">日
 
         <button type="submit">絞り込み</button>
         <a href="{% url 'records:record_list' %}">リセット</a>
@@ -65,8 +67,8 @@
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}
-                <a href="?page=1&species={{ species_query }}&location={{ location_query }}&survey={{ survey_query }}">&laquo; 最初</a>
-                <a href="?page={{ page_obj.previous_page_number }}&species={{ species_query }}&location={{ location_query }}&survey={{ survey_query }}">&laquo;</a>
+                <a href="?page=1&species={{ species_query }}&location={{ location_query }}&survey_y={{ survey_query_y }}&survey_m={{ survey_query_m }}&survey_d={{ survey_query_d }}">&laquo; 最初</a>
+                <a href="?page={{ page_obj.previous_page_number }}&species={{ species_query }}&location={{ location_query }}&survey_y={{ survey_query_y }}&survey_m={{ survey_query_m }}&survey_d={{ survey_query_d }}">&laquo;</a>
             {% endif %}
 
             <span class="current">
@@ -74,8 +76,8 @@
             </span>
 
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}&species={{ species_query }}&location={{ location_query }}&survey={{ survey_query }}">&raquo;</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}&species={{ species_query }}&location={{ location_query }}&survey={{ survey_query }}">最後 &raquo;</a>
+                <a href="?page={{ page_obj.next_page_number }}&species={{ species_query }}&location={{ location_query }}&survey_y={{ survey_query_y }}&survey_m={{ survey_query_m }}&survey_d={{ survey_query_d }}">&raquo;</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}&species={{ species_query }}&location={{ location_query }}&survey_y={{ survey_query_y }}&survey_m={{ survey_query_m }}&survey_d={{ survey_query_d }}">最後 &raquo;</a>
             {% endif %}
         </span>
     </div>
@@ -84,5 +86,6 @@
     <a href="{% url 'records:survey_list' %}">調査日リストへ</a><br>
     <a href="{% url 'records:location_list' %}">地点リストへ</a><br>
     <a href="{% url 'records:species_list' %}">生物種リストへ</a>
+    <a href="{% url 'records:home' %}">ホーム画面へ</a>
 </body>
 </html>

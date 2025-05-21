@@ -17,6 +17,29 @@ class SurveyListView(ListView):
     template_name = 'records/survey_list.html'
     context_object_name = 'surveys'
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        survey_query_y = self.request.GET.get('survey_y')
+        survey_query_m = self.request.GET.get('survey_m')
+        survey_query_d = self.request.GET.get('survey_d')
+
+        if survey_query_y:
+            queryset = queryset.filter(date__year=survey_query_y)
+        if survey_query_m:
+            queryset = queryset.filter(date__month=survey_query_m)
+        if survey_query_d:
+            queryset = queryset.filter(date__date=survey_query_d)
+
+        queryset = queryset.order_by('-date')
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['survey_query_y'] = self.request.GET.get('survey_y', '')
+        context['survey_query_m'] = self.request.GET.get('survey_m', '')
+        context['survey_query_d'] = self.request.GET.get('survey_d', '')
+        return context
+
 class SurveyDetailView(DetailView):
         model = Survey
         template_name = 'records/survey_detail.html'
@@ -49,7 +72,7 @@ class SurveyUpdateView(UpdateView):
 class SurveyDeleteView(DeleteView):
     model = Survey
     template_name = 'records/survey_delete.html'
-    context_object_name = 'record'
+    context_object_name = 'survey'
     success_url = reverse_lazy('records:survey_list')
 
 # Record views
@@ -63,27 +86,36 @@ class RecordListView(ListView):
         queryset = super().get_queryset()
         species_query = self.request.GET.get('species')
         location_query = self.request.GET.get('location')
-        survey_query = self.request.GET.get('survey')
+        survey_query_y = self.request.GET.get('survey_y')
+        survey_query_m = self.request.GET.get('survey_m')
+        survey_query_d = self.request.GET.get('survey_d')
 
         if species_query:
             queryset = queryset.filter(
                 Q(species__name__icontains=species_query) |
                 Q(species__genus__icontains=species_query) |
                 Q(species__family__icontains=species_query) |
-                Q(species__scientific_name__icontain=species_query)
+                Q(species__scientific_name__icontains=species_query)
             )
         if location_query:
             queryset = queryset.filter(location__name__icontains=location_query)
-        if survey_query:
-            queryset = queryset.filter(survey__date__year=survey_query)
+        if survey_query_y:
+            queryset = queryset.filter(survey__date__year=survey_query_y)
+        if survey_query_m:
+            queryset = queryset.filter(survey__date__month=survey_query_m)
+        if survey_query_d:
+            queryset = queryset.filter(survey__date__day=survey_query_d)
         
+        queryset = queryset.order_by('-survey__date', 'location__name', 'species__name')
         return queryset
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['species_query'] = self.request.GET.get('species', '')
         context['location_query'] = self.request.GET.get('location', '')
-        context['survey_query'] = self.request.GET.get('survey', '')
+        context['survey_query_y'] = self.request.GET.get('survey_y', '')
+        context['survey_query_m'] = self.request.GET.get('survey_m', '')
+        context['survey_query_d'] = self.request.GET.get('survey_d', '')
         return context
 
 class RecordDetailView(DetailView):
@@ -129,6 +161,33 @@ class SpeciesListView(ListView):
     template_name = 'records/species_list.html'
     context_object_name = 'species'
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        name_query = self.request.GET.get('name')
+        genus_query = self.request.GET.get('genus')
+        family_query = self.request.GET.get('family')
+        scientific_name_query = self.request.GET.get('scientific_name')
+
+        if name_query:
+            queryset = queryset.filter(name__icontains=name_query)
+        if genus_query:
+            queryset = queryset.filter(genus__icontains=genus_query)
+        if family_query:
+            queryset = queryset.filter(family__icontains=family_query)
+        if scientific_name_query:
+            queryset = queryset.filter(scientific_name__icontains=scientific_name_query)
+
+        queryset = queryset.order_by('family', 'genus')
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['name_query'] = self.request.GET.get('name', '')
+        context['genus_query'] = self.request.GET.get('genus', '')
+        context['family_query'] = self.request.GET.get('family', '')
+        context['scientific_name_query'] = self.request.GET.get('scientific_name', '')
+        return context
+
 class SpeciesDetailView(DetailView):
     model = Species
     template_name = 'records/species_detail.html'
@@ -160,6 +219,21 @@ class LocationListView(ListView):
     model = Location
     template_name = 'records/location_list.html'
     context_object_name = 'locations'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        location_query = self.request.GET.get('location')
+
+        if location_query:
+            queryset = queryset.filter(name__icontains=location_query)
+
+        queryset = queryset.order_by('name')
+        return queryset
+    
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['location_query'] = self.request.GET.get('location','')
+        return context
 
 class LocationDetailView(DetailView):
     model = Location
