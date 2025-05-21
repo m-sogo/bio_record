@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Record Detail</title>
+    <title>Detail Record</title>
 </head>
 <body>
     <h1>採捕記録</h1>
-    <p>種: {{ record.species }}</p>
-    <p>調査地点: {{ record.location }}</p>
-    <p>調査日: {{ record.survey }}</p>
+    <p>種: <a href="{% url 'records:species_detail' species.pk %}">{{ species.name }}</a></p>
+    <p>調査地点: <a href="{% url 'records:location_detail' location.pk %}">{{ record.location }}</a> </p>
+    <p>調査日: <a href="{% url 'records:survey_detail' survey.pk %}">{{ record.survey }}</a></p>
     <p>個体数: {{ record.count }}</p>
     <p>体長: {{ record.length }}</p>
     <p>湿重量: {{ record.weight }}</p>
@@ -17,10 +17,8 @@
     <p>水深: {{ record.water_depth }}</p>
     <p>備考: {{ record.note }}</p>
     <a href="{% url 'records:record_update' record.pk %}">採捕記録を更新する</a>
-    <a href="{% url 'records:record_delete' record.pk %}">採捕記録を削除する</a>
-    <a href="{% url 'records:location_detail' location.pk %}">地点情報へ</a>
-    <a href="{% url 'records:survey_detail' survey.pk %}">調査日情報へ</a>
-    <a href="{% url 'records:record_list' %}">詳細リストへ戻る</a>
+    <a href="{% url 'records:record_delete' record.pk %}">採捕記録を削除する</a><br>
+    <a href="{% url 'records:record_list' %}">詳細リストへ戻る</a><br>
     <a href="{% url 'records:home' %}">ホーム画面へ</a>
 </body>
 </html>

@@ -125,6 +125,7 @@ class RecordDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['species'] = self.object.species
         context['location'] = self.object.location
         context['survey'] = self.object.survey
         return context

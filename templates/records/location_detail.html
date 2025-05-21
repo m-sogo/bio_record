@@ -2,17 +2,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Location Detail</title>
+    <title>Detail Location</title>
 </head>
 <body>
-    <p>地点情報</p>
     <h2>地点ID: {{ location.name }}</h2>
     <p>緯度(N°): {{ location.latitude }}</p>
     <p>経度(E°): {{ location.longitude }}</p>
     <p>備考: {{ location.note }}</p>
     <a href="{% url 'records:location_update' location.pk %}">地点情報を更新</a><br>
     <a href="{% url 'records:location_delete' location.pk %}">地点情報を削除</a><br>
-    <a href="{% url 'records:location_list' %}">地点リストに戻る</a>
+    <a href="{% url 'records:location_list' %}">地点リストに戻る</a><br>
     <a href="{% url 'records:home' %}">ホーム画面へ</a>
 </body>
 </html>
