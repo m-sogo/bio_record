@@ -1,17 +1,21 @@
 <!-- species_update.html -->
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Update Species</title>
+    <link rel="stylesheet" href="{% static 'records/records.css' %}">
 </head>
 <body>
-    <h1>生物種情報を更新する</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">更新</button>
-    </form>
-    <a href="{% url 'records:species_detail' species.pk %}">種の詳細に戻る</a><br>
-    <a href="{% url 'records:home' %}">ホーム画面へ</a>
+    <div class="container">
+        <h1>生物種情報を更新する</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">更新</button>
+        </form>
+        <a href="{% url 'records:species_detail' species.pk %}">種の詳細に戻る</a><br>
+        <a href="{% url 'records:home' %}">ホーム画面へ</a>
+    </div>
 </body>
 </html>

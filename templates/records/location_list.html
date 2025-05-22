@@ -1,27 +1,31 @@
 <!-- location_list.html -->
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>List Location</title>
+    <link rel="stylesheet" href="{% static 'records/records.css' %}">
 </head>
 <body>
-    <h1>地点リスト</h1>
-    
-    <form method="get">
-        <label for="name">地点名:</label>
-        <input type="text" id="location" name="location" value="{{ location_query }}">
-        <button type="submit">絞り込み</button>
-        <a href="{% url 'records:location_list' %}">リセット</a>
-    </form>
+    <div class="container">
+        <h1>地点リスト</h1>
+        
+        <form method="get">
+            <label for="name">地点名:</label>
+            <input type="text" id="location" name="location" value="{{ location_query }}">
+            <button type="submit">絞り込み</button>
+            <a href="{% url 'records:location_list' %}">リセット</a>
+        </form>
 
-    <ul>
-        {% for location in locations %}
-            <li>
-                <a href="{% url 'records:location_detail' location.pk %}">{{ location.name }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'records:location_create' %}">地点を追加</a>
-    <a href="{% url 'records:home' %}">ホーム画面へ</a>
+        <ul>
+            {% for location in locations %}
+                <li>
+                    <a href="{% url 'records:location_detail' location.pk %}">{{ location.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'records:location_create' %}">地点を追加</a>
+        <a href="{% url 'records:home' %}">ホーム画面へ</a>
+    </div>
 </body>
 </html>

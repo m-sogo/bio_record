@@ -1,22 +1,26 @@
 <!-- home.html -->
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>bio_records_home</title>
+    <link rel="stylesheet" href="{% static 'records/records.css' %}">
 </head>
 <body>
-    <h1>Bio_Records</h1>
-    <div>このサイトでは、採捕記録の管理・閲覧ができます</div>
-    <h3>新規記録を登録する</h3>
-    <a href="{% url 'records:species_create' %}">種を登録</a><br>
-    <a href="{% url 'records:location_create' %}">地点を登録</a><br>
-    <a href="{% url 'records:survey_create' %}">調査日を登録</a><br>
-    <a href="{% url 'records:record_create' %}">採捕記録を登録</a><br><br>
+    <div class="container">
+        <h1>Bio_Records</h1>
+        <div>このサイトでは、採捕記録の管理・閲覧ができます</div>
+        <h3>新規記録を登録する</h3>
+        <a href="{% url 'records:species_create' %}">種を登録</a><br>
+        <a href="{% url 'records:location_create' %}">地点を登録</a><br>
+        <a href="{% url 'records:survey_create' %}">調査日を登録</a><br>
+        <a href="{% url 'records:record_create' %}">採捕記録を登録</a><br><br>
 
-    <h3>採捕記録を閲覧</h3>
-    <a href="{% url 'records:species_list' %}">種情報リストへ</a><br>
-    <a href="{% url 'records:location_list' %}">地点リストへ</a><br>
-    <a href="{% url 'records:survey_list' %}">調査日リストへ</a><br>
-    <a href="{% url 'records:record_list' %}">採捕記録リストへ</a>
+        <h3>採捕記録を閲覧</h3>
+        <a href="{% url 'records:species_list' %}">種情報リストへ</a><br>
+        <a href="{% url 'records:location_list' %}">地点リストへ</a><br>
+        <a href="{% url 'records:survey_list' %}">調査日リストへ</a><br>
+        <a href="{% url 'records:record_list' %}">採捕記録リストへ</a>
+    </div>
 </body>
 </html>

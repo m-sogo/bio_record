@@ -1,17 +1,21 @@
 <!-- survey_create.html -->
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Create Survey</title>
+    <link rel="stylesheet" href="{% static 'records/records.css' %}">
 </head>
 <body>
-    <h1>調査日登録</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">登録</button>
-    </form>
-    <a href="{% url 'records:survey_list' %}">調査日リスト</a><br>
-    <a href="{% url 'records:home' %}">ホーム画面へ</a>
+    <div class="container">
+        <h1>調査日登録</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">登録</button>
+        </form>
+        <a href="{% url 'records:survey_list' %}">調査日リスト</a><br>
+        <a href="{% url 'records:home' %}">ホーム画面へ</a>
+    </div>
 </body>
 </html>

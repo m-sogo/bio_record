@@ -1,46 +1,50 @@
 <!-- location_detail.html -->
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Detail Location</title>
+    <link rel="stylesheet" href="{% static 'records/records.css' %}">
 </head>
 <body>
-    <h2>地点ID: {{ location.name }}</h2>
-    <span>緯度(N°): {{ location.latitude }}</span>  
-    <span>経度(E°): {{ location.longitude }}</span>
-    <p>座標コピペ用: {{ location.latitude }}, {{ location.longitude }}</p>
-    <p>備考: {{ location.note }}</p>
+    <div class="container">
+        <h2>地点ID: {{ location.name }}</h2>
+        <span>緯度(N°): {{ location.latitude }}</span>  
+        <span>経度(E°): {{ location.longitude }}</span>
+        <p>座標コピペ用: {{ location.latitude }}, {{ location.longitude }}</p>
+        <p>備考: {{ location.note }}</p>
 
-    <a href="{% url 'records:record_list' %}?location={{ location.name|urlencode }}">この地点の採捕記録</a>
+        <a href="{% url 'records:record_list' %}?location={{ location.name|urlencode }}">この地点の採捕記録</a>
 
-    <hr>
-    <h3>採捕できた種</h3>
-    {% regroup records by species as species_groups %}
-    <ul>
-        {% for group in species_groups %}
-            <li>
-                <a href="{% url 'records:species_detail' pk=group.grouper.pk %}">{{ group.grouper.name }}</a>
-            </li>
-        {% endfor %}
-    </ul>
+        <hr>
+        <h3>採捕できた種</h3>
+        {% regroup records by species as species_groups %}
+        <ul>
+            {% for group in species_groups %}
+                <li>
+                    <a href="{% url 'records:species_detail' pk=group.grouper.pk %}">{{ group.grouper.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
 
-    <hr>
-    <h3>調査日</h3>
-    {% regroup records by survey as date_groups %}
-    <ul>
-        {% for group in date_groups %}
-            <!-- group.grouper はそれぞれの Date オブジェクト (例: 2025-05-12) -->
-            <li>
-                <a href="{% url 'records:survey_detail' pk=group.grouper.pk %}">{{ group.grouper.date }}</a>
-            </li>
-        {% endfor %}
-    </ul>
+        <hr>
+        <h3>調査日</h3>
+        {% regroup records by survey as date_groups %}
+        <ul>
+            {% for group in date_groups %}
+                <!-- group.grouper はそれぞれの Date オブジェクト (例: 2025-05-12) -->
+                <li>
+                    <a href="{% url 'records:survey_detail' pk=group.grouper.pk %}">{{ group.grouper.date }}</a>
+                </li>
+            {% endfor %}
+        </ul>
 
-    <hr>
+        <hr>
 
-    <a href="{% url 'records:location_update' location.pk %}">地点情報を更新</a><br>
-    <a href="{% url 'records:location_delete' location.pk %}">地点情報を削除</a><br>
-    <a href="{% url 'records:location_list' %}">地点リストに戻る</a><br>
-    <a href="{% url 'records:home' %}">ホーム画面へ</a>
+        <a href="{% url 'records:location_update' location.pk %}">地点情報を更新</a><br>
+        <a href="{% url 'records:location_delete' location.pk %}">地点情報を削除</a><br>
+        <a href="{% url 'records:location_list' %}">地点リストに戻る</a><br>
+        <a href="{% url 'records:home' %}">ホーム画面へ</a>
+    </div>
 </body>
 </html>

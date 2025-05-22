@@ -1,0 +1,162 @@
+/* records.css */
+/* ベーススタイル */
+body {
+    font-family: 'Segoe UI', 'Meiryo', sans-serif;
+    background: #f4f8fb; /* 全体のやわらかい背景色 */
+    color: #333; /* 文字色をやや濃いめに */
+    margin: 0;
+    padding: 0;
+}
+
+/* コンテナを中央寄せ＆余白追加 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem 40px;
+}
+
+/* 見出し */
+h1, h2, h3, h4 {
+    margin-top: 1.5em;
+    margin-bottom: 0.7em;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+h1 {
+    font-size: 2em;
+    color: #1976d2;
+    border-bottom: 2px solid #90caf9;
+    padding-bottom: 0.3em;
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #1976d2;
+    border-bottom: 2px solid #90caf9;
+    padding-bottom: 0.3em;
+    margin-top: 1.2em;
+}
+
+h3 {
+    color: #1565c0;
+    font-size: 1.2em;
+}
+
+h4 {
+    color: #388e3c;
+    margin-left: 1em;
+    font-size: 1.1em;
+}
+
+/* テキスト / 段落 */
+p {
+    margin: 0.7em 0;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* 使い勝手向上のため、汎用クラスを追加 */
+.form-group {
+    margin-bottom: 1rem;
+}
+.form-label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+}
+.form-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+.form-input:focus {
+    outline: none;
+    border-color: #1976d2;
+    box-shadow: 0 0 3px rgba(25, 118, 210, 0.3);
+}
+
+/* ボタン */
+.button-link, button {
+    display: inline-block;
+    margin: 0.5em 0.5em 0.5em 0;
+    padding: 0.5em 1.2em;
+    background: #1976d2;
+    color: #fff !important;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.button-link:hover, button:hover {
+    background: #1565c0;
+}
+
+/* リンク */
+a {
+    color: #1976d2;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+a:hover {
+    color: #e65100;
+    text-decoration: underline;
+}
+
+/* リスト */
+ul {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    padding: 0.7em 1.5em;
+    margin: 0.5em 0 1.5em 2em;
+    list-style: disc inside;
+}
+li {
+    margin: 0.3em 0;
+}
+
+/* テーブル */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+    background-color: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+}
+th {
+    background-color: #f2f2f2;
+    font-weight: 600;
+}
+
+/* 区切り線 */
+hr {
+    border: none;
+    border-top: 1px solid #bbb;
+    margin: 2em 0;
+}
+
+/* ページネーション */
+.pagination {
+    margin-top: 1em;
+    text-align: center;
+}
+.step-links a {
+    margin: 0 4px;
+    color: #1976d2;
+}
+.step-links a:hover {
+    color: #e65100;
+}

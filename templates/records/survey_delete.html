@@ -1,17 +1,21 @@
 <!-- survey_delete.html -->
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Delete Survey</title>
+    <link rel="stylesheet" href="{% static 'records/records.css' %}">
 </head>
 <body>
-    <h1>この調査日を本当に削除しますか？</h1>
-    <form method="post">
-        {% csrf_token %}
-        <p>削除すると、関連する採捕記録も削除されるため推奨しません</p>
-        <button type="submit">はい、削除します</button>
-        <a href="{% url 'records:survey_detail' object.pk %}">いいえ、詳細に戻ります</a>
-    </form>
-    <a href="{% url 'records:home' %}">ホーム画面へ</a>
+    <div class="container">
+        <h1>この調査日を本当に削除しますか？</h1>
+        <form method="post">
+            {% csrf_token %}
+            <p>削除すると、関連する採捕記録も削除されるため推奨しません</p>
+            <button type="submit">はい、削除します</button>
+            <a href="{% url 'records:survey_detail' object.pk %}">いいえ、詳細に戻ります</a>
+        </form>
+        <a href="{% url 'records:home' %}">ホーム画面へ</a>
+    </div>
 </body>
 </html>
