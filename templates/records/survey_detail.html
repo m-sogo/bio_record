@@ -9,32 +9,34 @@
     <link rel="stylesheet" href="{% static 'records/records.css' %}">
 </head>
 <body>
-    <h2>調査日情報: {{ survey.date }}</h2>
-    <p>調査メモ: {{ survey.note }}</p>
+    <div class="container">>
+        <h2>調査日情報: {{ survey.date }}</h2>
+        <p>調査メモ: {{ survey.note }}</p>
 
-    <a href="{% url 'records:record_list' %}?survey_date={{ survey.date|date:'Y-m-d' }}" target = "blank">この日の採捕記録</a>
+        <a href="{% url 'records:record_list' %}?survey_date={{ survey.date|date:'Y-m-d' }}" target = "blank">この日の採捕記録</a>
 
-    <hr>
-    <h3>この日の調査地点と採捕種</h3>
+        <hr>
+        <h3>この日の調査地点と採捕種</h3>
 
-    {% regroup records by location as grouped_records %}
-    {% for group in grouped_records %}
-        <h4>
-            <a href="{% url 'records:location_detail' pk=group.grouper.pk %}">
-                {{ group.grouper.name }}
-            </a>
-        </h4>
-        <ul>
-            {% for record in group.list %}
-                <li>
-                    <a href="{% url 'records:species_detail' pk=record.species.pk %}">{{ record.species.name }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endfor %}
-    <a href="{% url 'records:survey_update' survey.pk %}">調査日情報を更新</a>
-    <a href="{% url 'records:survey_delete' survey.pk %}">調査日情報を削除</a><br>
-    <a href="{% url 'records:survey_list' %}">調査日リストに戻る</a><br>
-    <a href="{% url 'records:home' %}">ホーム画面へ</a>
+        {% regroup records by location as grouped_records %}
+        {% for group in grouped_records %}
+            <h4>
+                <a href="{% url 'records:location_detail' pk=group.grouper.pk %}">
+                    {{ group.grouper.name }}
+                </a>
+            </h4>
+            <ul>
+                {% for record in group.list %}
+                    <li>
+                        <a href="{% url 'records:species_detail' pk=record.species.pk %}">{{ record.species.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+        <a href="{% url 'records:survey_update' survey.pk %}">調査日情報を更新</a>
+        <a href="{% url 'records:survey_delete' survey.pk %}">調査日情報を削除</a><br>
+        <a href="{% url 'records:survey_list' %}">調査日リストに戻る</a><br>
+        <a href="{% url 'records:home' %}">ホーム画面へ</a>
+    </div>
 </body>
 </html>

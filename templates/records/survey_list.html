@@ -9,25 +9,27 @@
     <link rel="stylesheet" href="{% static 'records/records.css' %}">
 </head>
 <body>
-    <h2>調査日リスト</h2>
-    
-    <form method="get">
-        <label for="survey">調査日:</label>
-        <input size="3" type="text" id="survey_y" name="survey_y" value="{{ survey_query_y }}">年
-        <input size="1" type="text" id="survey_m" name="survey_m" value="{{ survey_query_m }}">月
-        <input size="1" type="text" id="survey_d" name="survey_d" value="{{ survey_query_d }}">日
-        <button type="submit">絞り込み</button>
-        <a href="{% url 'records:survey_list' %}">リセット</a>
-    </form>
+    <div class="container">
+        <h2>調査日リスト</h2>
+        
+        <form method="get">
+            <label for="survey">調査日:</label>
+            <input size="3" type="text" id="survey_y" name="survey_y" value="{{ survey_query_y }}">年
+            <input size="1" type="text" id="survey_m" name="survey_m" value="{{ survey_query_m }}">月
+            <input size="1" type="text" id="survey_d" name="survey_d" value="{{ survey_query_d }}">日
+            <button type="submit">絞り込み</button>
+            <a href="{% url 'records:survey_list' %}">リセット</a>
+        </form>
 
-    <ul>
-        {% for survey in surveys %}
-            <li>
-                <a href="{% url 'records:survey_detail' survey.pk %}">{{ survey.date }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'records:survey_create' %}">調査日を追加</a>
-    <a href="{% url 'records:home' %}">ホーム画面へ</a>
+        <ul>
+            {% for survey in surveys %}
+                <li>
+                    <a href="{% url 'records:survey_detail' survey.pk %}">{{ survey.date }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'records:survey_create' %}">調査日を追加</a>
+        <a href="{% url 'records:home' %}">ホーム画面へ</a>
+    </div>
 </body>
 </html>

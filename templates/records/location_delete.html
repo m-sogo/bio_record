@@ -7,13 +7,15 @@
     <link rel="stylesheet" href="{% static 'records/records.css' %}">
 </head>
 <body>
-    <h1>この地点を本当に削除しますか？</h1>
-    <form method="post">
-        {% csrf_token %}
-        <p>削除すると、関連する採捕記録も削除されるため推奨しません</p>
-        <button type="submit">はい、削除します</button>
-        <a href="{% url 'records:location_detail' object.pk %}">いいえ、地点情報に戻ります</a>
-    </form>
-    <a href="{% url 'records:home' %}">ホーム画面へ</a>
+    <div class="container">
+        <h1>この地点を本当に削除しますか？</h1>
+        <form method="post">
+            {% csrf_token %}
+            <p>削除すると、関連する採捕記録も削除されるため推奨しません</p>
+            <button type="submit">はい、削除します</button>
+            <a href="{% url 'records:location_detail' object.pk %}">いいえ、地点情報に戻ります</a>
+        </form>
+        <a href="{% url 'records:home' %}">ホーム画面へ</a>
+    </div>
 </body>
 </html>

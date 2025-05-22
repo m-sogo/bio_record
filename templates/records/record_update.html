@@ -7,13 +7,15 @@
     <link rel="stylesheet" href="{% static 'records/records.css' %}">
 </head>
 <body>
-    <h1>採捕記録を更新</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">更新</button>
-    </form>
-    <a href="{% url 'records:record_detail' record.pk %}">採捕情報詳細へ戻る</a><br>
-    <a href="{% url 'records:home' %}">ホーム画面へ</a>
+    <div class="container">
+        <h1>採捕記録を更新</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">更新</button>
+        </form>
+        <a href="{% url 'records:record_detail' record.pk %}">採捕情報詳細へ戻る</a><br>
+        <a href="{% url 'records:home' %}">ホーム画面へ</a>
+    </div>
 </body>
 </html>
