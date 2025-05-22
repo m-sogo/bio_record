@@ -1,8 +1,10 @@
 <!-- location_detail.html -->
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Detail Location</title>
+    <link rel="stylesheet" href="{% static 'records/records.css' %}">
 </head>
 <body>
     <h2>地点ID: {{ location.name }}</h2>

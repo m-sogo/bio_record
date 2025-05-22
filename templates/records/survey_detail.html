@@ -1,10 +1,12 @@
 <!-- survey_detail.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Survey</title>
+    <link rel="stylesheet" href="{% static 'records/records.css' %}">
 </head>
 <body>
     <h2>調査日情報: {{ survey.date }}</h2>
