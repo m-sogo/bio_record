@@ -5,7 +5,7 @@
     <title>List Species</title>
 </head>
 <body>
-    <h1>生物種リスト</h1><a href="{% url 'records:species_create' %}">新たに種を追加する</a>
+    <h1>種情報リスト</h1>
     
     <form method="get">
         <label for="name">種名:</label>
@@ -27,6 +27,7 @@
             </li>
         {% endfor %}
     </ul>
+    <a href="{% url 'records:species_create' %}">種を追加する</a>
     <a href="{% url 'records:home' %}">ホーム画面へ</a>
 </body>
 </html>

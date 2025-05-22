@@ -10,15 +10,26 @@
     <h2>調査日情報: {{ survey.date }}</h2>
     <p>調査メモ: {{ survey.note }}</p>
 
-    <h3>採捕記録</h3>
-    <ul>
-        {% for record in records %}
-            <li>
-                <a href="{% url 'records:record_detail' record.pk %}"></a>
-                    {{ record.species.name }} - {{ record.location.name }} - 個体数: {{ record.count }}
-            </li>
-        {% endfor %}
-    </ul>
+    <a href="{% url 'records:record_list' %}?survey_date={{ survey.date|date:'Y-m-d' }}" target = "blank">この日の採捕記録</a>
+
+    <hr>
+    <h3>この日の調査地点と採捕種</h3>
+
+    {% regroup records by location as grouped_records %}
+    {% for group in grouped_records %}
+        <h4>
+            <a href="{% url 'records:location_detail' pk=group.grouper.pk %}">
+                {{ group.grouper.name }}
+            </a>
+        </h4>
+        <ul>
+            {% for record in group.list %}
+                <li>
+                    <a href="{% url 'records:species_detail' pk=record.species.pk %}">{{ record.species.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
     <a href="{% url 'records:survey_update' survey.pk %}">調査日情報を更新</a>
     <a href="{% url 'records:survey_delete' survey.pk %}">調査日情報を削除</a><br>
     <a href="{% url 'records:survey_list' %}">調査日リストに戻る</a><br>

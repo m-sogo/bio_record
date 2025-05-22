@@ -18,7 +18,7 @@
     <p>備考: {{ record.note }}</p>
     <a href="{% url 'records:record_update' record.pk %}">採捕記録を更新する</a>
     <a href="{% url 'records:record_delete' record.pk %}">採捕記録を削除する</a><br>
-    <a href="{% url 'records:record_list' %}">詳細リストへ戻る</a><br>
+    <a href="{% url 'records:record_list' %}">採捕記録リストへ戻る</a><br>
     <a href="{% url 'records:home' %}">ホーム画面へ</a>
 </body>
 </html>

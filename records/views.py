@@ -89,6 +89,7 @@ class RecordListView(ListView):
         survey_query_y = self.request.GET.get('survey_y')
         survey_query_m = self.request.GET.get('survey_m')
         survey_query_d = self.request.GET.get('survey_d')
+        survey_query_date = self.request.GET.get('survey_date')
 
         if species_query:
             queryset = queryset.filter(
@@ -105,6 +106,8 @@ class RecordListView(ListView):
             queryset = queryset.filter(survey__date__month=survey_query_m)
         if survey_query_d:
             queryset = queryset.filter(survey__date__day=survey_query_d)
+        if survey_query_date:
+            queryset = queryset.filter(survey__date=survey_query_date)
         
         queryset = queryset.order_by('-survey__date', 'location__name', 'species__name')
         return queryset
@@ -134,12 +137,7 @@ class RecordCreateView(CreateView):
     model = Record
     form_class = RecordForm
     template_name = 'records/record_create.html'
-    def form_valid(self, form):
-        self.object = form.save()
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse('records:record_list', kwargs={'pk': self.object.pk})
+    success_url = reverse_lazy('records:record_list')
 
 class RecordUpdateView(UpdateView):
     model = Record
@@ -194,6 +192,11 @@ class SpeciesDetailView(DetailView):
     template_name = 'records/species_detail.html'
     context_object_name = 'species'
 
+    def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            context['records'] = Record.objects.filter(species=self.object)
+            return context
+
 class SpeciesCreateView(CreateView):
     model = Species
     form_class = SpeciesForm
@@ -240,6 +243,11 @@ class LocationDetailView(DetailView):
     model = Location
     template_name = 'records/location_detail.html'
     context_object_name = 'location'
+
+    def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            context['records'] = Record.objects.filter(location=self.object).order_by('-survey__date')
+            return context
 
 class LocationCreateView(CreateView):
     model = Location
