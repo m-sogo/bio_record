@@ -5,13 +5,13 @@
     <title>Create Species</title>
 </head>
 <body>
-    <h1>種登録</h1>
+    <h1>種情報登録</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">登録</button>
     </form>
-    <a href="{% url 'records:species_list' %}">生物種リスト</a><br>
+    <a href="{% url 'records:species_list' %}">種情報リスト</a><br>
     <a href="{% url 'records:home' %}">ホーム画面へ</a>
 </body>
 </html>

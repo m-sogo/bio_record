@@ -10,9 +10,24 @@
     <p>科:{{ species.family }}</p>
     <p>学名:{{ species.scientific_name }}</p>
     <p>備考: {{ species.note }}</p>
-    <a href="{% url 'records:species_update' species.pk %}">種の情報を更新</a>
-    <a href="{% url 'records:species_delete' species.pk %}">種の情報を削除</a><br>
-    <a href="{% url 'records:species_list' %}">生物種リストに戻る</a><br>
+
+    <a href="{% url 'records:record_list' %}?species={{ species.name|urlencode }}">この種の採捕記録</a>
+
+    <hr>
+    <h3>採捕できた地点</h3>
+    {% regroup records by location as location_groups %}
+    <ul>
+        {% for group in location_groups %}
+            <li>
+                <a href="{% url 'records:location_detail' pk=group.grouper.pk %}">{{ group.grouper.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+
+    <a href="{% url 'records:species_update' species.pk %}">種情報を更新</a>
+    <a href="{% url 'records:species_delete' species.pk %}">種情報を削除</a><br>
+    <a href="{% url 'records:species_list' %}">種情報リストに戻る</a><br>
     <a href="{% url 'records:home' %}">ホーム画面へ</a>
 </body>
 </html>

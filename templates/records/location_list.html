@@ -6,7 +6,6 @@
 </head>
 <body>
     <h1>地点リスト</h1>
-    <a href="{% url 'records:location_create' %}">新たに地点を追加</a>
     
     <form method="get">
         <label for="name">地点名:</label>
@@ -22,6 +21,7 @@
             </li>
         {% endfor %}
     </ul>
+    <a href="{% url 'records:location_create' %}">地点を追加</a>
     <a href="{% url 'records:home' %}">ホーム画面へ</a>
 </body>
 </html>
