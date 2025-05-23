@@ -94,8 +94,8 @@ class RecordListView(ListView):
         if species_query:
             queryset = queryset.filter(
                 Q(species__name__icontains=species_query) |
-                Q(species__genus__icontains=species_query) |
-                Q(species__family__icontains=species_query) |
+                Q(species__genus=species_query) |
+                Q(species__family=species_query) |
                 Q(species__scientific_name__icontains=species_query)
             )
         if location_query:
